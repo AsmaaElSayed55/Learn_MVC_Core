@@ -107,7 +107,7 @@ namespace LearnMVC
 
             #endregion
 
-            //  app.MapGet("/", () => "Hello World!"); // By Default URL
+              app.MapGet("/", () => "Hello World!"); // By Default URL
 
 
             #region Routing
@@ -175,10 +175,52 @@ namespace LearnMVC
 
             #region Action Return Types
 
+            /*
+              Actions : 
+            * must be public
+            * can't be static 
+            * can't be an extension method
+            * can't be a constructor or Getter or Setter
+            * can't have open generic types
+            * is not a method of the controller base class
+            * can't contain Ref ot Out Parameters
+             */
+
+            /*
+             Action Return Types :
+             * ViewResult --> return HTML page
+             * EmptyResult --> return no result
+             * RedirectResult --> return redirect to a new URL
+             * JsonResult --> return JavaScript Object Notation Result  (in API)
+             * JavaScriptResult --> return JavaScript Script
+             * ContentResult --> return text result
+             * FileContentResult --> return downloadable file (With the Binary content)
+             * FilePathResult --> return downloadable file (with a path)
+             * FileStreamResult -->  return downloadable file (with a file Stream)
+             */
+
+
+
             #endregion
 
 
             #region Model Binding & Action Patameters
+
+            // is the process of automatically mapping incoming HTTP request data to action method parameters or model properties
+
+            //////  Types 
+            // 1. Simple data / Data Types Built-In (int, string, decimal)
+            // 2. Complex data / User Defined (Employee, Student, Car) --> Can't bind data from the headers
+            // 3. Collection data (List)
+            // 4. Mixed Data (Simple data with complex data with collections) more than one type
+
+            /////// Values Providers [In Order and by Priority decreasing]
+            // 1. Form --> Hight Priority
+            // 2. Route Data 
+            // 3. Query String
+            // 4. Request Body
+            // 5. Request Headers --> Low Priority
+
 
             #endregion
 

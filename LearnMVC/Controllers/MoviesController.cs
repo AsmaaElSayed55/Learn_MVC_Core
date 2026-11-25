@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LearnMVC.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics.Contracts;
 
 namespace LearnMVC.Controllers
@@ -6,31 +7,7 @@ namespace LearnMVC.Controllers
     public class MoviesController : Controller // MVC Controller
     {
 
-        /*
-          Actions : 
-        * must be public
-        * can't be static 
-        * can't be an extension method
-        * can't be a constructor or Getter or Setter
-        * can't have open generic types
-        * is not a method of the controller base class
-        * can't contain Ref ot Out Parameters
-         */
-
-        /*
-         Action Return Types :
-         * ViewResult --> return HTML page
-         * EmptyResult --> return no result
-         * RedirectResult --> return redirect to a new URL
-         * JsonResult --> return JavaScript Object Notation Result  (in API)
-         * JavaScriptResult --> return JavaScript Script
-         * ContentResult --> return text result
-         * FileContentResult --> return downloadable file (With the Binary content)
-         * FilePathResult --> return downloadable file (with a path)
-         * FileStreamResult -->  return downloadable file (with a file Stream)
-         */
-
-
+      
         // Action
         // BaseURL/Movies/GetMovie/10?name=film
         // send parameters as query string
@@ -84,13 +61,34 @@ namespace LearnMVC.Controllers
             }
         }
 
-        public IActionResult TestRedirect()
+        //public IActionResult TestRedirect()
+        //{
+        //    //  return RedirectToAction("Index"); // redirect to this action in the same controller
+        //    //  return RedirectToAction(actionName:"GetMovie",controllerName:"Movies"); // redirect to this action in another controller
+        //    //  return RedirectToAction(actionName: "GetMovie", controllerName: "Movies", routeValues: new {id=20}); // redirect to this action in another controller with the route Values
+        //    return RedirectToRoute(routeName: "default", routeValues: new { Action = "GetMovie", Controller="Movies",Id=20 }); // can't read default values in original route yo direct to it , Action & Controller are required
+        //}
+
+        //[HttpGet]
+        //public IActionResult TestModelBinding([FromQuery]int? id, [FromForm]string name) // make it take Id data from query only , name data from Form Only
+        //{
+        //    return Content(content: "");
+        //}
+
+        [HttpPost]
+        public IActionResult TestModelBinding([FromHeader]string? name,[FromForm]int id,[FromBody]Movie movie) // make it take Id data from query only , name data from Form Only , Movie get data from Json file
         {
-            //  return RedirectToAction("Index"); // redirect to this action in the same controller
-            //  return RedirectToAction(actionName:"GetMovie",controllerName:"Movies"); // redirect to this action in another controller
-            //  return RedirectToAction(actionName: "GetMovie", controllerName: "Movies", routeValues: new {id=20}); // redirect to this action in another controller with the route Values
-            return RedirectToRoute(routeName: "default", routeValues: new { Action = "GetMovie", Controller="Movies",Id=20 }); // can't read default values in original route yo direct to it , Action & Controller are required
+            // Movie ==> Id , Name
+            return Content(content: "");
         }
 
+        [HttpGet]
+        public IActionResult TestModelBinding(int[] arr,int? id,string name, Movie movie) 
+        {
+            return Content(content: "");
+        }
+
+
+
     }
-}
+} 
